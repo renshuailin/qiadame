@@ -5,21 +5,14 @@
         <i class="fa fa-search"></i>
         <input type="text" v-model="cityVal" placeholder="请输入城市名" />
       </div>
-      <button
-        @click="
-          $router.push({
-            name: 'address',
-            params: { city: location.addressComponent.city }
-          })
-        "
-      >
+      <button @click="pushCity">
         取消
       </button>
     </div>
     <div style="height:100%" v-if="searchList.length == 0">
       <div class="loca">
         <app-Location
-          @click.native="selectCity(location.addressComponent.city)"
+          @click.native="pushCity"
           :address="location.addressComponent.city"
         />
       </div>
@@ -109,7 +102,17 @@ export default {
         });
     },
     selectCity(city) {
-      this.$router.push({ name: "address", params: { city: city.name } });
+      this.$router.push({
+        name: "address",
+        params: { city: city.name }
+      });
+    },
+    // 跳转路由传参
+    pushCity() {
+      this.$router.push({
+        name: "address",
+        params: { city: this.location.addressComponent.city }
+      });
     },
     //搜索城市
     searchCity() {
