@@ -1,7 +1,7 @@
 <template>
-  <div :class="{open:isShow||isScreen}" @click.self="hideView">
+  <div class="filter" :class="{open:isShow||isScreen}" @click.self="hideView">
     <!-- 导航 -->
-    <div class="filter" v-if="filterData">
+    <div v-if="filterData">
       <aside class="filter-content">
         <div
           class="filter-nav"
@@ -91,10 +91,14 @@ export default {
         this.isScreen = false;
         this.$emit("searchFixd", true);
       } else if (index == 1) {
-        this.$emit("update", { data: this.filterData.navTab[1].condition });
+        this.$emit("update", {
+          condition: this.filterData.navTab[1].condition
+        });
         this.hideView();
       } else if (index == 2) {
-        this.$emit("update", { data: this.filterData.navTab[2].condition });
+        this.$emit("update", {
+          condition: this.filterData.navTab[2].condition
+        });
         this.hideView();
       } else if (index == 3) {
         this.isScreen = true;
@@ -116,7 +120,7 @@ export default {
       this.filterData.navTab[0].name = this.filterData.sortBy[index].name;
       this.hideView();
       // 更新数据
-      this.$emit("update", { data: item.code });
+      this.$emit("update", { condition: item.code });
     },
     // 点击选中
     select(item, screenBy) {
@@ -159,7 +163,7 @@ export default {
       });
       // console.log(mpiStr);
 
-      this.$emit("update", { data: screenData });
+      this.$emit("update", { dconditionata: screenData });
       this.hideView();
     }
   }
@@ -170,7 +174,7 @@ export default {
 .filter {
   background: #fff;
   position: sticky;
-  top: 76px;
+  top: 77px;
   z-index: 10;
 }
 .filter-content {
@@ -181,6 +185,7 @@ export default {
   height: 10vw;
   display: flex;
   justify-content: space-around;
+  background-color: #fff;
 }
 .filter-nav {
   flex: 1;
@@ -203,7 +208,7 @@ export default {
 }
 .open {
   position: fixed;
-  top: 0;
+  /* top: 0; */
   left: 0;
   width: 100%;
   height: 100%;
@@ -215,13 +220,13 @@ export default {
 .sort {
   background-color: #fff;
   color: #333;
-  padding-top: 2vw;
+  padding-top: 5vw;
   position: absolute;
   width: 100%;
   /* height: 100%; */
   z-index: 4;
   left: 0;
-  top: 30vw;
+  /* top: 28vw; */
 }
 .sort li {
   position: relative;
