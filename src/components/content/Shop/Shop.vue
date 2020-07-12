@@ -1,6 +1,6 @@
 <template>
   <section class="index">
-    <div class="shop-info">
+    <div class="shop-info" @click="$router.push('/detail')">
       <!-- 图片 -->
       <div class="logo">
         <img :src="merchant.image_path" alt />
@@ -41,7 +41,7 @@
 
 <script>
 // 引入星星组件
-import Rating from "./Rating";
+import Rating from "../../common/Rating/Rating";
 export default {
   name: "Shop",
   components: {

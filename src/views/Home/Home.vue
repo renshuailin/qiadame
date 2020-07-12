@@ -57,9 +57,9 @@ import { Swipe, SwipeItem, Loadmore } from "mint-ui";
 //vuex
 import { mapGetters } from "vuex";
 //引入筛选选型卡
-import Filter from "./Child/Filter";
-//引入商家组件
-import Shop from "./Child/Shop";
+import Filter from "components/content/Filter/Filter";
+//引入商家列表组件
+import Shop from "components/content/Shop/Shop";
 
 export default {
   name: "Home",
@@ -70,7 +70,7 @@ export default {
       filterData: null,
       showFilter: false,
       page: 1,
-      size: 5,
+      size: 7,
       merchant: [],
       allLoaded: false,
       bottomPullText: "",
@@ -274,6 +274,6 @@ export default {
 /* 保持高度不变 */
 .mint-loadmore {
   height: calc(100% - 122px);
-  overflow: initial;
+  overflow: auto;
 }
 </style>

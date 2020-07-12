@@ -1,6 +1,9 @@
 <template>
   <div class="index">
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
+
     <app-TabBars :data="tabbarData" />
   </div>
 </template>
