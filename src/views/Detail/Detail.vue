@@ -219,6 +219,6 @@ export default {
 }
 .mint-tab-container {
   position: relative;
-  /* height: calc(100% - 12vw); */
+  height: calc(100% - -40vw);
 }
 </style>
