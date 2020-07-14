@@ -45,10 +45,10 @@
         <app-Goods :shopInfo="detailInfo" />
       </mt-tab-container-item>
       <mt-tab-container-item id="2">
-        <app-Comment />
+        <app-Comment :comments="comments" />
       </mt-tab-container-item>
       <mt-tab-container-item id="3">
-        <app-Seller />
+        <app-Seller :seller="seller" />
       </mt-tab-container-item>
     </mt-tab-container>
   </div>
@@ -76,7 +76,9 @@ export default {
     return {
       detailInfo: null,
       isShow: false,
-      selected: "1"
+      selected: "1",
+      comments: null,
+      seller: null
     };
   },
   components: {
@@ -100,8 +102,28 @@ export default {
             item.count = 0;
           });
         });
+        res.data.menu.forEach(item => {
+          item.foods.forEach(item => {
+            item.count = 0;
+          });
+        });
+
         this.detailInfo = res.data;
       });
+      // 请求评论
+      this.$axios(`/api/profile/comments`)
+        .then(res => {
+          // console.log(res.data);
+          this.comments = res.data;
+        })
+        .catch(err => console.log(err));
+      // 请求商家
+      this.$axios(`/api/profile/seller`)
+        .then(res => {
+          // console.log(res.data);
+          this.seller = res.data;
+        })
+        .catch(err => console.log(err));
     }
   }
 };
@@ -219,6 +241,6 @@ export default {
 }
 .mint-tab-container {
   position: relative;
-  height: calc(100% - -40vw);
+  /* height: calc(100% - -40vw); */
 }
 </style>

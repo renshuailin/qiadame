@@ -45,15 +45,20 @@
               <span>{{item.description}}</span>
             </div>
             <!-- 下 -->
-            <div class="food-detail" v-for="(item,index) in item.foods" :key="index">
-              <img :src="item.image_path" />
+            <div
+              class="food-detail"
+              @click="handle(food)"
+              v-for="(food,index) in item.foods"
+              :key="index"
+            >
+              <img :src="food.image_path" />
               <section class="food-info">
-                <h4>{{item.name}}</h4>
-                <p class="des">{{item.description}}</p>
-                <p class="sell">月售{{item.month_sales}}份 好评率{{item.satisfy_rate}}</p>
+                <h4>{{food.name}}</h4>
+                <p class="des">{{food.description}}</p>
+                <p class="sell">月售{{food.month_sales}}份 好评率{{food.satisfy_rate}}</p>
                 <div class="food-price">
-                  <span class="price">¥{{item.activity.fixed_price}}</span>
-                  <app-CartControl :count="item" />
+                  <span class="price">¥{{food.activity.fixed_price}}</span>
+                  <app-CartControl :count="food" />
                 </div>
               </section>
             </div>
@@ -63,6 +68,8 @@
     </div>
     <!-- 购物车 -->
     <app-Cart :shopInfo="shopInfo" />
+    <!-- 商品详情 -->
+    <app-Food :food="selectFood" :isshow="isshow" @close="isshow=false" />
   </div>
 </template>
  
@@ -73,6 +80,8 @@ import CartControl from "components/content/CartControl/CartControl";
 import BScroll from "better-scroll";
 //购物车
 import Cart from "./Cart";
+// 点击详情
+import Food from "./Food";
 export default {
   name: "page-navbar",
   props: {
@@ -85,7 +94,9 @@ export default {
       menu: {},
       food: {},
       srcollY: 0,
-      listHeight: []
+      listHeight: [],
+      selectFood: null,
+      isshow: false
     };
   },
   computed: {
@@ -102,6 +113,10 @@ export default {
     }
   },
   methods: {
+    handle(food) {
+      this.selectFood = food;
+      this.isshow = true;
+    },
     selectMenu(index) {
       // console.log(index);
       let list = this.$refs.food.getElementsByClassName("food-list");
@@ -118,7 +133,7 @@ export default {
         height += item.clientHeight;
         this.listHeight.push(height);
       }
-      console.log(this.listHeight);
+      // console.log(this.listHeight);
     },
     initScroll() {
       this.$nextTick(() => {
@@ -141,7 +156,8 @@ export default {
 
   components: {
     "app-CartControl": CartControl,
-    "app-Cart": Cart
+    "app-Cart": Cart,
+    "app-Food": Food
   }
 };
 </script>
