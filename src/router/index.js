@@ -33,7 +33,7 @@ const routes = [
       {
         path: "/city",
         name: "city",
-        component: () => import("../views/Address/Child/CityView")
+        component: () => import("views/Address/Child/CityView")
       }
     ]
   },
@@ -51,6 +51,16 @@ const routes = [
     path: "/detail",
     name: "detail",
     component: () => import("views/Detail/Detail")
+  },
+  {
+    path: "/myaddress",
+    name: "myaddress",
+    component: () => import("views/Me/Child/MeAddress")
+  },
+  {
+    path: "/addaddress",
+    name: "addaddress",
+    component: () => import("views/Me/Child/Addaddress")
   }
 ];
 

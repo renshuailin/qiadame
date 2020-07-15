@@ -14,12 +14,7 @@
       @btnClick="getCode"
     />
     <!-- 验证码框 -->
-    <app-input
-      type="number"
-      v-model="validation"
-      placeholder="请输入验证码"
-      :error="error.code"
-    />
+    <app-input type="number" v-model="validation" placeholder="请输入验证码" :error="error.code" />
     <!-- 协议 -->
     <div class="loginDes">
       <p>
@@ -65,7 +60,7 @@ export default {
         .then(res => {
           console.log(res);
 
-          localStorage.setItem("ele_login", true);
+          localStorage.setItem("ele_login", res.data.user._id);
           this.$router.push("/");
         })
         .catch(err => (this.error = { code: err.response.data.msg }));

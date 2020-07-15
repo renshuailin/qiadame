@@ -45,13 +45,8 @@
               <span>{{item.description}}</span>
             </div>
             <!-- 下 -->
-            <div
-              class="food-detail"
-              @click="handle(food)"
-              v-for="(food,index) in item.foods"
-              :key="index"
-            >
-              <img :src="food.image_path" />
+            <div class="food-detail" v-for="(food,index) in item.foods" :key="index">
+              <img :src="food.image_path" @click="handle(food)" />
               <section class="food-info">
                 <h4>{{food.name}}</h4>
                 <p class="des">{{food.description}}</p>
@@ -104,10 +99,14 @@ export default {
       for (let i = 0; i < this.listHeight.length; i++) {
         let height1 = this.listHeight[i];
         let height2 = this.listHeight[i + 1];
-        if (this.srcollY >= height1 && this.srcollY < height2) {
+        if (!height2 || (this.srcollY >= height1 && this.srcollY < height2)) {
           return i;
+
           // console.log(i);
         }
+        // if (this.srcollY >= 19690) {
+        //   return 11;
+        // }
       }
       return 0;
     }
@@ -230,7 +229,7 @@ export default {
   /* height: 600px; */
   box-sizing: border-box;
 
-  padding-bottom: 10.8vw;
+  padding-bottom: 12vw;
   background-color: #fff;
   display: flex;
 }
@@ -239,22 +238,22 @@ export default {
   overflow-y: hidden;
   /* height: 100%; */
   height: calc(100% - 12.8vw);
-  background-color: #f8f8f8;
-  padding-bottom: 10.666667vw;
-  width: 20.533333vw;
+  background-color: #f1f1f1;
+  padding-bottom: 10vw;
+  width: 20vw;
 }
 .menu-warp li {
-  padding: 4.666667vw 2vw;
+  padding: 5vw 2vw;
   font-size: 0.6rem;
   color: #666;
   line-height: 1.2;
 }
 .menu-warp li img {
   max-width: 100%;
-  width: 3.466667vw;
-  height: 3.466667vw;
+  width: 3.5vw;
+  height: 3.5vw;
   vertical-align: top;
-  margin-right: 0.8vw;
+  margin-right: 1vw;
 }
 
 /* 右 */
@@ -263,18 +262,18 @@ export default {
   overflow-y: hidden;
   /* height: 100%; */
   /* height: calc(100% - 12.8vw) !important; */
-  width: 79.466667vw;
-  padding-bottom: 10.666667vw;
+  width: 80vw;
+  padding-bottom: 10vw;
 }
 .cart {
-  margin-left: 2.666667vw;
+  margin-left: 2.5vw;
   padding: 2vw 8vw 2vw 0;
   display: flex;
   align-items: center;
   overflow: hidden;
 }
 .cart strong {
-  margin-right: 1.333333vw;
+  margin-right: 1.3vw;
   font-weight: 700;
   font-size: 0.8rem;
   color: #666;
@@ -289,21 +288,21 @@ export default {
   text-overflow: ellipsis;
 }
 .food-detail {
-  min-height: 30.666667vw;
-  padding: 2.666667vw 0 2.666667vw 2.666667vw;
-  margin-bottom: 0.133333vw;
+  min-height: 30vw;
+  padding: 2.5vw 0 2.5vw 2.5vw;
+  margin-bottom: 0.15vw;
   display: flex;
 }
 .food-detail img {
-  width: 25.333333vw;
-  height: 25.333333vw;
+  width: 25vw;
+  height: 25vw;
   flex: none;
-  margin-right: 2.666667vw;
-  border-radius: 0.533333vw;
+  margin-right: 2.5vw;
+  border-radius: 0.5vw;
 }
 .food-info {
   flex: 1;
-  padding-bottom: 6.666667vw;
+  padding-bottom: 7vw;
   padding-right: 4vw;
 }
 .food-info h4 {
@@ -317,16 +316,16 @@ export default {
   color: #333;
 }
 .des {
-  margin: 1.333333vw 0;
+  margin: 1.3vw 0;
   font-size: 0.6rem;
   color: #999;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 42.666667vw;
+  width: 43vw;
 }
 .sell {
-  margin: 1.733333vw 0 !important;
+  margin: 1.7vw 0 !important;
   color: #999;
   font-size: 0.6rem;
   line-height: 1;
@@ -336,13 +335,13 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 3.733333vw;
+  margin-top: 3.8vw;
 }
 .food-price .price {
   font-size: 1rem;
-  line-height: 4.266667vw;
+  line-height: 4vw;
   color: #ff5339;
-  padding-bottom: 0.933333vw;
+  padding-bottom: 1vw;
   display: flex;
   align-items: baseline;
 }
