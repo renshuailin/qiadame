@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view />
+    <keep-alive>
+      <router-view :key="$route.path + $route.query.t" />
+    </keep-alive>
   </div>
 </template>
 <script>

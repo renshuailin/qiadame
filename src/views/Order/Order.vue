@@ -1,122 +1,135 @@
 <template>
-  <div class="wrapper" ref="wrapper">
-    <ul class="content">
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
-      <li>5</li>
-      <li>6</li>
-      <li>7</li>
-      <li>8</li>
-      <li>9</li>
-      <li>10</li>
-      <li>11</li>
-      <li>12</li>
-      <li>13</li>
-      <li>14</li>
-      <li>15</li>
-      <li>16</li>
-      <li>17</li>
-      <li>18</li>
-      <li>19</li>
-      <li>20</li>
-      <li>21</li>
-      <li>22</li>
-      <li>23</li>
-      <li>24</li>
-      <li>25</li>
-      <li>26</li>
-      <li>27</li>
-      <li>28</li>
-      <li>29</li>
-      <li>30</li>
-      <li>31</li>
-      <li>32</li>
-      <li>33</li>
-      <li>34</li>
-      <li>35</li>
-      <li>36</li>
-      <li>37</li>
-      <li>38</li>
-      <li>39</li>
-      <li>40</li>
-      <li>41</li>
-      <li>42</li>
-      <li>43</li>
-      <li>44</li>
-      <li>45</li>
-      <li>46</li>
-      <li>47</li>
-      <li>48</li>
-      <li>49</li>
-      <li>50</li>
-      <li>51</li>
-      <li>52</li>
-      <li>53</li>
-      <li>54</li>
-      <li>55</li>
-      <li>56</li>
-      <li>57</li>
-      <li>58</li>
-      <li>59</li>
-      <li>60</li>
-      <li>61</li>
-      <li>62</li>
-      <li>63</li>
-      <li>64</li>
-      <li>65</li>
-      <li>66</li>
-      <li>67</li>
-      <li>68</li>
-      <li>69</li>
-      <li>70</li>
-      <li>71</li>
-      <li>72</li>
-      <li>73</li>
-      <li>74</li>
-      <li>75</li>
-      <li>76</li>
-      <li>77</li>
-      <li>78</li>
-      <li>79</li>
-      <li>80</li>
-      <li>81</li>
-      <li>82</li>
-      <li>83</li>
-      <li>84</li>
-      <li>85</li>
-      <li>86</li>
-      <li>87</li>
-      <li>88</li>
-      <li>89</li>
-      <li>90</li>
-      <li>91</li>
-      <li>92</li>
-      <li>93</li>
-      <li>94</li>
-      <li>95</li>
-      <li>96</li>
-      <li>97</li>
-      <li>98</li>
-      <li>99</li>
-      <li>100</li>
-    </ul>
+  <div class="order" v-if="orderInfo">
+    <div class="order-card-body">
+      <div class="order-card-wrap">
+        <img :src="orderInfo.selectFood[0].image_path" alt />
+        <div class="order-card-content">
+          <div class="order-card-head">
+            <div class="title">
+              <a>
+                <span>{{orderInfo.shopInfo.name}}</span>
+              </a>
+              <p>订单未完成</p>
+            </div>
+          </div>
+          <div class="order-card-detail">
+            <p class="detail">{{orderInfo.selectFood[0].name}}</p>
+            <p class="price">¥{{total}}</p>
+          </div>
+        </div>
+        <div class="order-card-bottom">
+          <button class="cardbutton" @click="$router.go(0)">刷新一下</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
-import BScroll from "better-scroll";
+// import BScroll from "better-scroll";
+import { mapGetters } from "vuex";
 export default {
-  mounted() {
-    this.$nextTick(() => {
-      new BScroll(this.$refs.wrapper, {});
-    });
-  }
+  name: "Order",
+  computed: { ...mapGetters(["userInfo", "orderInfo", "total"]) }
 };
 </script>
 <style scoped>
-.wrapper {
-  height: 200px;
-  /* overflow: hidden; */
+.order {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+  margin-bottom: 2.666667vw;
+}
+.order-card-body {
+  margin-top: 2.666667vw;
+  background-color: #fff;
+  padding: 3.733333vw 0 0 4vw;
+}
+.order-card-wrap {
+  display: flex;
+}
+.order-card-wrap > img {
+  height: 8.533333vw;
+  border-radius: 0.533333vw;
+  border: 1px solid #eee;
+  width: 8.533333vw;
+  margin-right: 2.666667vw;
+}
+.order-card-content {
+  flex: 1;
+}
+.order-card-head {
+  border-bottom: 1px solid #eee;
+  padding-right: 3.466667vw;
+  padding-bottom: 2.666667vw;
+}
+.order-card-head .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.order-card-head .title > a {
+  font-size: 1rem;
+  line-height: 1.5em;
+  color: #333;
+  text-decoration: none;
+}
+.order-card-head .title > a > span {
+  display: inline-block;
+  max-width: 10em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.order-card-head .title > a > i {
+  margin-left: 1.333333vw;
+  color: #ccc;
+  vertical-align: super;
+}
+.order-card-head .title > p {
+  font-size: 0.8rem;
+  text-align: right;
+  color: #333;
+  max-width: 14em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.date-time {
+  font-size: 0.6rem;
+  color: #999;
+}
+.order-card-detail {
+  display: flex;
+  justify-content: space-between;
+  padding: 4vw 3.466667vw 4vw 0;
+  font-size: 0.8rem;
+}
+.order-card-detail .detail {
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+.order-card-detail .price {
+  flex-basis: 16vw;
+  text-align: right;
+  color: #333;
+  font-weight: 700;
+}
+.order-card-bottom {
+  display: flex;
+  /* border-top: 1px solid #eee; */
+  padding: 2.666667vw 4.266667vw;
+  justify-content: flex-end;
+}
+.cardbutton {
+  padding: 1.333333vw 2.666667vw;
+  border: 1px solid #2395ff;
+  border-radius: 0.533333vw;
+  background-color: transparent;
+  outline: none;
+  font-size: 0.8rem;
+  color: #2395ff;
+  margin-left: 2vw;
 }
 </style>

@@ -1,17 +1,9 @@
 <template>
   <div class="group">
     <div class="input-text" :class="{ isfeedBack: error }">
-      <input
-        :type="type"
-        :value="value"
-        :placeholder="placeholder"
-        :name="name"
-        @input="input"
-      />
+      <input :type="type" :value="value" :placeholder="placeholder" :name="name" @input="input" />
       <!-- 输入框后面按钮 -->
-      <button v-if="btnTitle" :disabled="disabled" @click="btnClick">
-        {{ btnTitle }}
-      </button>
+      <button v-if="btnTitle" :disabled="disabled" @click="btnClick">{{ btnTitle }}</button>
     </div>
     <!-- 错误提醒 -->
     <div v-if="error" class="feedBack">{{ error }}</div>
@@ -35,7 +27,7 @@ export default {
   },
   methods: {
     input(event) {
-      console.log(event);
+      // console.log(event);
 
       this.$emit("input", event.target.value);
     },

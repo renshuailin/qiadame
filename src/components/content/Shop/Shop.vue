@@ -86,7 +86,7 @@ export default {
   overflow: hidden;
   flex-direction: column;
   padding-left: 2.666667vw;
-  font-size: 0.2rem;
+  font-size: 0.5rem;
   flex-grow: 1;
 }
 .brand {

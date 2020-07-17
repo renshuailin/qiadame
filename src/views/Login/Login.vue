@@ -4,6 +4,7 @@
       <img src="~assets/img/logo.jpg" />
     </div>
     <!-- 手机框 -->
+
     <app-input
       type="number"
       v-model="phone"
@@ -14,6 +15,7 @@
       @btnClick="getCode"
     />
     <!-- 验证码框 -->
+
     <app-input type="number" v-model="validation" placeholder="请输入验证码" :error="error.code" />
     <!-- 协议 -->
     <div class="loginDes">
@@ -24,6 +26,10 @@
     </div>
     <div class="loginBtn">
       <button :disabled="isClick" @click="login">登录</button>
+    </div>
+    <div class="test">
+      <span>测试号:15574346624</span>
+      <span>验证码:786421</span>
     </div>
   </div>
 </template>
@@ -160,5 +166,14 @@ export default {
 }
 .loginBtn button[disabled] {
   background-color: #8bda81;
+}
+.test {
+  display: flex;
+  flex-direction: column;
+  color: red;
+  line-height: 24px;
+  font-size: 12px;
+  margin-top: 12px;
+  /* justify-content: space-between; */
 }
 </style>

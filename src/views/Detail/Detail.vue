@@ -92,6 +92,7 @@ export default {
   created() {
     this.getData();
   },
+
   methods: {
     getData() {
       this.$axios(`/api/profile/batch_shop`).then(res => {

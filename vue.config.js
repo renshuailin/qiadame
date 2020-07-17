@@ -3,6 +3,7 @@ function resolve(dir) {
   return path.join(__dirname, dir); //path.join(__dirname)设置绝对路径
 }
 module.exports = {
+  // publicPath: "/wxzf/dist/", // 打包文件相对路径 微信支付
   chainWebpack: config => {
     config.resolve.alias
       .set("@", resolve("./src"))
@@ -18,18 +19,18 @@ module.exports = {
     host: "localhost",
     port: 8080,
     https: false,
-    hotOnly: false,
-    proxy: {
-      // 配置跨域
-      "/api": {
-        target: "https://ele-interface.herokuapp.com/api/",
-        ws: true,
-        changOrigin: true,
-        pathRewrite: {
-          "^/api": ""
-        }
-      }
-    }
+    hotOnly: false
+    // proxy: {
+    //   // 配置跨域
+    //   "/api": {
+    //     target: "https://ele-interface.herokuapp.com/api/",
+    //     ws: true,
+    //     changOrigin: true,
+    //     pathRewrite: {
+    //       "^/api": ""
+    //     }
+    //   }
+    // }
   }
 };
 

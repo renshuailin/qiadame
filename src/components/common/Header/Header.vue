@@ -55,7 +55,7 @@ export default {
 }
 
 .header-title {
-  /* flex: 1; */
+  flex: 1;
   width: 80%;
 }
 .is-left {

@@ -8,11 +8,7 @@
           <i class="fa fa-angle-down"></i>
         </span>
         <i class="fa fa-search"></i>
-        <input
-          type="text"
-          v-model="citySearch"
-          placeholder="小区/写字楼/学校"
-        />
+        <input type="text" v-model="citySearch" placeholder="小区/写字楼/学校" />
       </div>
       <app-Location :address="address" @click.native="$router.push('/home')" />
     </div>
@@ -71,11 +67,6 @@ export default {
   },
   computed: {
     ...mapGetters(["address"])
-  },
-  beforeRouteEnter(to, from, next) {
-    // console.log(to);
-    // console.log(from);
-    next(vm => (vm.city = to.params.city));
   }
 };
 </script>

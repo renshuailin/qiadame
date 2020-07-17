@@ -4,11 +4,12 @@
     <!-- 显示 -->
     <div class="address-view">
       <div class="address-card" v-for="(address,index) in allAddress" :key="index">
+        <!-- 选择 -->
         <div class="address-card-select">
-          <i class="fa fa-check-circle"></i>
+          <i class="fa fa-check-circle" v-if="selectIndex==index"></i>
         </div>
 
-        <div class="address-card-body">
+        <div class="address-card-body" @click="setClick(address,index)">
           <p class="address-card-title">
             <span class="username">{{address.name}}</span>
 
@@ -16,7 +17,7 @@
           </p>
           <p class="address-card-address">
             <span class="tag" v-if="address.tag">{{address.tag}}</span>
-            <span class="address-text">{{address.address}}</span>
+            <span class="address-text">{{address.address}}{{address.bottom}}</span>
           </p>
           <div class="address-card-edit">
             <i @click="handleDelete(address,index)" class="fa fa-close"></i>
@@ -38,7 +39,8 @@ export default {
   name: "MeAddress",
   data() {
     return {
-      allAddress: []
+      allAddress: [],
+      selectIndex: 0
     };
   },
   beforeRouteEnter(to, from, next) {
@@ -57,6 +59,11 @@ export default {
         .then(res => {
           this.allAddress.splice(index, 1);
         });
+    },
+    setClick(address, index) {
+      this.selectIndex = index;
+      this.$store.dispatch("setUserInfo", address);
+      this.$router.push("/settlement");
     }
   },
   components: {
@@ -93,9 +100,10 @@ export default {
 
 /* 展示收货 */
 .address-view {
+  box-sizing: border-box;
   height: 100%;
   overflow-y: auto;
-  padding-bottom: 13.866667vw;
+  padding-bottom: 14vw;
 }
 .address-card {
   background-color: #fff;
