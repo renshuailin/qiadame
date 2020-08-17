@@ -11,7 +11,7 @@ import qs from "qs";
 import { Indicator } from "mint-ui";
 
 import axios from "axios";
-axios.defaults.baseURL = "https://ele-interface.herokuapp.com/";
+axios.defaults.baseURL = "https://element-interface.herokuapp.com/";
 
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
