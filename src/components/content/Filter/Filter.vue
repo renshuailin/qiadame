@@ -60,27 +60,27 @@ export default {
       currentIndex: 0,
       currentSort: 0,
       isShow: false,
-      isScreen: false
+      isScreen: false,
     };
   },
   props: {
     filterData: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   computed: {
     isEdit() {
       let edit = false;
-      this.filterData.screenBy.forEach(screen => {
-        screen.data.forEach(item => {
+      this.filterData.screenBy.forEach((screen) => {
+        screen.data.forEach((item) => {
           if (item.select) {
             edit = true;
           }
         });
       });
       return edit;
-    }
+    },
   },
   methods: {
     tabClick(index) {
@@ -92,12 +92,12 @@ export default {
         this.$emit("searchFixd", true);
       } else if (index == 1) {
         this.$emit("update", {
-          condition: this.filterData.navTab[1].condition
+          condition: this.filterData.navTab[1].condition,
         });
         this.hideView();
       } else if (index == 2) {
         this.$emit("update", {
-          condition: this.filterData.navTab[2].condition
+          condition: this.filterData.navTab[2].condition,
         });
         this.hideView();
       } else if (index == 3) {
@@ -125,7 +125,7 @@ export default {
     // 点击选中
     select(item, screenBy) {
       if (screenBy.id !== "MPI") {
-        screenBy.data.forEach(item => {
+        screenBy.data.forEach((item) => {
           item.select = false;
         });
       }
@@ -133,8 +133,8 @@ export default {
     },
     //清空
     clear() {
-      this.filterData.screenBy.forEach(screen => {
-        screen.data.forEach(item => {
+      this.filterData.screenBy.forEach((screen) => {
+        screen.data.forEach((item) => {
           item.select = false;
         });
       });
@@ -144,10 +144,10 @@ export default {
       let screenData = {
         MPI: "",
         offer: "",
-        per: ""
+        per: "",
       };
       let mpiStr = "";
-      this.filterData.screenBy.forEach(screen => {
+      this.filterData.screenBy.forEach((screen) => {
         screen.data.forEach((item, index) => {
           if (item.select) {
             if (screen.id !== "MPI") {
@@ -165,8 +165,8 @@ export default {
 
       this.$emit("update", { dconditionata: screenData });
       this.hideView();
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -209,7 +209,7 @@ export default {
 .open {
   position: fixed;
   /* top: 0; */
-  left: 0;
+  /* left: 0; */
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);

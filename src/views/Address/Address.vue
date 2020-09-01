@@ -31,43 +31,51 @@ export default {
   components: {
     "app-Header": Header,
     "app-Location": Location,
-    "app-Area": Area
+    "app-Area": Area,
+  },
+  beforeRouteEnter(to, from, next) {
+    // console.log(to);
+    next((vm) => {
+      vm.city = to.params.city;
+    });
   },
   data() {
     return {
       city: "",
       citySearch: "",
-      placeList: []
+      placeList: [],
     };
   },
+
   watch: {
     citySearch() {
+      // console.log(11);
       this.searchPlace();
-    }
+    },
   },
   methods: {
     searchPlace() {
       // console.log(this.citySearch);
       const self = this;
-      AMap.plugin("AMap.Autocomplete", function() {
+      AMap.plugin("AMap.Autocomplete", function () {
         // 实例化Autocomplete
+        // console.log(this);
         var autoOptions = {
           //city 限定城市，默认全国
-
-          city: self.city
+          city: self.city,
         };
         var autoComplete = new AMap.Autocomplete(autoOptions);
-        autoComplete.search(self.citySearch, function(status, result) {
+        autoComplete.search(self.citySearch, function (status, result) {
           // 搜索成功时，result即是对应的匹配数据
           console.log(result);
           self.placeList = result.tips;
         });
       });
-    }
+    },
   },
   computed: {
-    ...mapGetters(["address"])
-  }
+    ...mapGetters(["address"]),
+  },
 };
 </script>
 <style scoped>

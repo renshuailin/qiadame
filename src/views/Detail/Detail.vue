@@ -3,7 +3,7 @@
     <!-- 头 -->
     <nav class="header">
       <div class="nav-bg">
-        <img :src="detailInfo.rst.scheme" alt />
+        <img :src="detailInfo.rst.scheme" />
       </div>
       <div class="nav-back">
         <i class="fa fa-chevron-left" @click="$router.go(-1)"></i>
@@ -78,7 +78,7 @@ export default {
       isShow: false,
       selected: "1",
       comments: null,
-      seller: null
+      seller: null,
     };
   },
   components: {
@@ -87,7 +87,7 @@ export default {
     // "app-Navbar": Navbar,
     "app-Goods": Goods,
     "app-Comment": Comment,
-    "app-Seller": Seller
+    "app-Seller": Seller,
   },
   created() {
     this.getData();
@@ -95,16 +95,16 @@ export default {
 
   methods: {
     getData() {
-      this.$axios(`/api/profile/batch_shop`).then(res => {
+      this.$axios(`/api/profile/batch_shop`).then((res) => {
         // console.log(res);
         // 增加一个count记录个数
-        res.data.recommend.forEach(item => {
-          item.items.forEach(item => {
+        res.data.recommend.forEach((item) => {
+          item.items.forEach((item) => {
             item.count = 0;
           });
         });
-        res.data.menu.forEach(item => {
-          item.foods.forEach(item => {
+        res.data.menu.forEach((item) => {
+          item.foods.forEach((item) => {
             item.count = 0;
           });
         });
@@ -113,20 +113,20 @@ export default {
       });
       // 请求评论
       this.$axios(`/api/profile/comments`)
-        .then(res => {
+        .then((res) => {
           // console.log(res.data);
           this.comments = res.data;
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
       // 请求商家
       this.$axios(`/api/profile/seller`)
-        .then(res => {
+        .then((res) => {
           // console.log(res.data);
           this.seller = res.data;
         })
-        .catch(err => console.log(err));
-    }
-  }
+        .catch((err) => console.log(err));
+    },
+  },
 };
 </script>
 

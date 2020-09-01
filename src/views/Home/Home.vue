@@ -74,30 +74,28 @@ export default {
       merchant: [],
       allLoaded: false,
       bottomPullText: "",
-      data: null
+      data: null,
     };
   },
   components: { "app-Filter": Filter, "app-Shop": Shop },
   computed: {
     ...mapGetters(["address", "location"]),
     city() {
-      return (
-        this.location.addressComponent.city ||
-        this.location.addressComponent.province
-      );
-    }
+      // console.log(address);
+      return this.location.addressComponent.city;
+    },
   },
   created() {
     this.getData();
   },
   methods: {
     getData() {
-      this.$axios("/api/profile/shopping").then(res => {
+      this.$axios("/api/profile/shopping").then((res) => {
         this.swipe = res.data.swipeImgs;
         // console.log(res);
         this.entries = res.data.entries;
       }),
-        this.$axios("/api/profile/filter").then(res => {
+        this.$axios("/api/profile/filter").then((res) => {
           // console.log(res.data);
           this.filterData = res.data;
         }),
@@ -120,7 +118,7 @@ export default {
       // 获取商家信息
       this.$axios
         .post(`/api/profile/restaurants/${this.page}/${this.size}`, this.data)
-        .then(res => {
+        .then((res) => {
           // console.log(res.data);
           this.merchant = res.data;
           //下拉刷新 停止收回
@@ -133,11 +131,11 @@ export default {
         this.page++;
         this.$axios
           .post(`/api/profile/restaurants/${this.page}/${this.size}`)
-          .then(res => {
+          .then((res) => {
             console.log(res.data);
             this.$refs.loadmore.onBottomLoaded();
             if (res.data.length > 0) {
-              res.data.forEach(item => {
+              res.data.forEach((item) => {
                 this.merchant.push(item);
               });
               if (res.data < this.size) {
@@ -151,8 +149,8 @@ export default {
             }
           });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
@@ -164,7 +162,7 @@ export default {
 }
 .header,
 .search-warp {
-  background-color: #009eef;
+  background-color: #38c27e;
   padding: 16px;
 }
 .header .address {

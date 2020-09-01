@@ -1,16 +1,4 @@
-import Vue from "vue";
-
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
-//引入mint ui
-import MintUI from "mint-ui";
-import "mint-ui/lib/style.css";
-import qs from "qs";
-
-//使用加载动画
 import { Indicator } from "mint-ui";
-
 import axios from "axios";
 axios.defaults.baseURL = "https://element-interface.herokuapp.com/";
 
@@ -47,9 +35,6 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+export default {
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount("#app");
+}

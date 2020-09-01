@@ -14,20 +14,20 @@ export default {
   name: "Header",
   props: {
     title: {
-      type: String
+      type: String,
     },
     isLeft: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 };
 </script>
 <style scoped>
 .header {
   display: flex;
   align-items: center;
-  background-color: #009eef;
+  background-color: #38c27e;
   box-sizing: border-box;
   color: #fff;
   font-size: 16px;

@@ -12,9 +12,9 @@ export default {
   name: "Location",
   props: {
     address: {
-      type: String
-    }
-  }
+      type: String,
+    },
+  },
 };
 </script>
 <style scoped>
@@ -23,7 +23,7 @@ export default {
   font-size: 12px;
 }
 .location .des i {
-  color: #009eef;
+  color: #38c27e;
 }
 .location .des span {
   color: #333;

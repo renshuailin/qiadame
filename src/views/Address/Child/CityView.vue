@@ -5,23 +5,13 @@
         <i class="fa fa-search"></i>
         <input type="text" v-model="cityVal" placeholder="请输入城市名" />
       </div>
-      <button @click="pushCity">
-        取消
-      </button>
+      <button @click="pushCity">取消</button>
     </div>
     <div style="height:100%" v-if="searchList.length == 0">
       <div class="loca">
-        <app-Location
-          @click.native="pushCity"
-          :address="location.addressComponent.city"
-        />
+        <app-Location @click.native="pushCity" :address="location.addressComponent.city" />
       </div>
-      <app-Alpha
-        @selectCity="selectCity"
-        ref="allcity"
-        :cityInfo="cityInfo"
-        :keys="keys"
-      />
+      <app-Alpha @selectCity="selectCity" ref="allcity" :cityInfo="cityInfo" :keys="keys" />
     </div>
     <div class="search-list" v-else>
       <ul>
@@ -29,9 +19,7 @@
           v-for="(item, index) in searchList"
           :key="index"
           @click="selectCity(item)"
-        >
-          {{ item.name }}
-        </li>
+        >{{ item.name }}</li>
       </ul>
     </div>
   </div>
@@ -54,11 +42,11 @@ export default {
       cityInfo: null,
       keys: [],
       fullCity: [],
-      searchList: []
+      searchList: [],
     };
   },
   computed: {
-    ...mapGetters(["location"])
+    ...mapGetters(["location"]),
   },
   created() {
     this.getCity();
@@ -66,12 +54,12 @@ export default {
   watch: {
     cityVal() {
       this.searchCity();
-    }
+    },
   },
   methods: {
     getCity() {
       this.$axios("/api/posts/cities")
-        .then(res => {
+        .then((res) => {
           // console.log(res.data);
           //保存数据
           this.cityInfo = res.data;
@@ -87,31 +75,31 @@ export default {
             this.$refs.allcity.initScroll();
           });
           //存储所有城市，搜索过滤
-          this.keys.forEach(item => {
+          this.keys.forEach((item) => {
             // console.log(item);
 
-            this.cityInfo[item].forEach(item => {
+            this.cityInfo[item].forEach((item) => {
               // console.log(item);
               //拿到所有城市
               this.fullCity.push(item);
             });
           });
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
     selectCity(city) {
       this.$router.push({
         name: "address",
-        params: { city: city.name }
+        params: { city: city.name },
       });
     },
     // 跳转路由传参
     pushCity() {
       this.$router.push({
         name: "address",
-        params: { city: this.location.addressComponent.city }
+        params: { city: this.location.addressComponent.city },
       });
     },
     //搜索城市
@@ -122,23 +110,23 @@ export default {
       } else {
         //根据关键字过滤，并存入searchList
         this.searchList = this.fullCity.filter(
-          item => item.name.indexOf(this.cityVal) != -1
+          (item) => item.name.indexOf(this.cityVal) != -1
         );
       }
       // console.log(this.searchList);
-    }
+    },
   },
   components: {
     "app-Location": Location,
-    "app-Alpha": Alpha
-  }
+    "app-Alpha": Alpha,
+  },
 };
 </script>
 <style scoped>
 .city {
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow: scroll-y;
   box-sizing: border-box;
   padding-top: 45px;
 }
@@ -169,7 +157,7 @@ export default {
 }
 .search-city button {
   outline: none;
-  color: #009eef;
+  color: #38c27e;
   background-color: #fff;
   border: none;
 }

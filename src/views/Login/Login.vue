@@ -44,14 +44,14 @@ export default {
       validation: "",
       error: {},
       btnTitle: "获取验证码",
-      disabled: false
+      disabled: false,
     };
   },
   computed: {
     isClick() {
       if (!this.phone || !this.validation) return true;
       else return false;
-    }
+    },
   },
 
   methods: {
@@ -61,15 +61,16 @@ export default {
       this.$axios
         .post("/api/posts/sms_back", {
           phone: this.phone,
-          code: this.validation
+          code: this.validation,
         })
-        .then(res => {
+        .then((res) => {
           console.log(res);
 
           localStorage.setItem("ele_login", res.data.user._id);
+          // 跳转到首页
           this.$router.push("/");
         })
-        .catch(err => (this.error = { code: err.response.data.msg }));
+        .catch((err) => (this.error = { code: err.response.data.msg }));
     },
     getCode() {
       if (this.checkPhone()) {
@@ -80,9 +81,9 @@ export default {
             token: "ceef220e7a694ebd123d543cfee1a489",
             appid: "fa8442e1ee374ad690350f8f259f06c5",
             templateid: "554314",
-            phone: this.phone
+            phone: this.phone,
           })
-          .then(res => {
+          .then((res) => {
             // console.log(res);
             this.checkBtn();
           });
@@ -92,12 +93,12 @@ export default {
       //提示报错信息
       if (!this.phone) {
         this.error = {
-          phone: "手机号码不能为空"
+          phone: "手机号码不能为空",
         };
         return false;
       } else if (!/^1[3456789]\d{9}$/.test(this.phone)) {
         this.error = {
-          phone: "请填写正确的手机号"
+          phone: "请填写正确的手机号",
         };
         return false;
       } else {
@@ -119,12 +120,12 @@ export default {
           time--;
         }
       }, 1000);
-    }
+    },
   },
 
   components: {
-    "app-input": input
-  }
+    "app-input": input,
+  },
 };
 </script>
 <style scoped>
