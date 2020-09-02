@@ -236,12 +236,12 @@ export default {
 }
 .fa-check {
   float: right;
-  color: #009eef;
+  color: #38c27e;
   margin-right: 4vw;
   line-height: 10vw;
 }
 .selectName {
-  color: #009eef;
+  color: #38c27e;
 }
 /* 筛选 */
 .filter-sort {
@@ -311,7 +311,7 @@ export default {
 
 /* 选中 */
 .selected {
-  color: #1a7edb !important;
+  color: #38c27e !important;
   background-color: #edf5ff !important;
 }
 /* 清空样式 */

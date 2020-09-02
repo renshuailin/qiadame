@@ -30,12 +30,12 @@ export default {
   name: "Me",
   data() {
     return {
-      userInfo: ""
+      userInfo: "",
     };
   },
   beforeRouteEnter(to, from, next) {
     // ...
-    next(vm => vm.getData());
+    next((vm) => vm.getData());
   },
   methods: {
     login() {
@@ -44,7 +44,7 @@ export default {
 
     getData() {
       const user_id = localStorage.ele_login;
-      this.$axios(`/api/user/user_info/${user_id}`).then(res => {
+      this.$axios(`/api/user/user_info/${user_id}`).then((res) => {
         console.log(res.data);
         this.userInfo = res.data;
       });
@@ -62,8 +62,8 @@ export default {
       } else {
         this.$router.push("/addaddress");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
@@ -76,7 +76,7 @@ export default {
 }
 .header-info {
   display: flex;
-  background-image: linear-gradient(90deg, #0af, #0085ff);
+  background-image: linear-gradient(90deg, #38c27e, #38c27e);
   padding: 7vw 4vw;
   color: #fff;
   align-items: center;
@@ -132,7 +132,7 @@ export default {
 }
 .address > i {
   font-size: 1.3rem;
-  color: rgb(74, 165, 240);
+  color: #38c27e;
   margin-right: 2.666667vw;
 }
 .address-index {

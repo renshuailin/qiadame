@@ -52,7 +52,7 @@ import { Toast } from "mint-ui";
 export default {
   name: "Settlement",
   beforeRouteEnter(to, from, next) {
-    next(vm => {
+    next((vm) => {
       if (!vm.userInfo) {
         vm.getData();
       }
@@ -60,41 +60,43 @@ export default {
   },
   data() {
     return {
-      haveAddress: true
+      haveAddress: true,
     };
   },
   methods: {
     getData() {
-      this.$axios(`/api/user/user_info/${localStorage.ele_login}`).then(res => {
-        console.log(res.data);
-        if (res.data.myAddress.length > 0) {
-          this.haveAddress = true;
-        } else {
-          this.haveAddress = false;
+      this.$axios(`/api/user/user_info/${localStorage.ele_login}`).then(
+        (res) => {
+          console.log(res.data);
+          if (res.data.myAddress.length > 0) {
+            this.haveAddress = true;
+          } else {
+            this.haveAddress = false;
+          }
         }
-      });
+      );
     },
     pay() {
       if (!this.userInfo) {
         Toast({
           message: "请选择收货地址",
           position: "middle",
-          duration: 2000
+          duration: 2000,
         });
         return;
       } else {
         this.$router.push("/pay");
       }
-    }
+    },
   },
   computed: {
-    ...mapGetters(["userInfo", "orderInfo", "total"])
+    ...mapGetters(["userInfo", "orderInfo", "total"]),
   },
   components: {
     "app-Header": Header,
     "app-Delivery": Delivery,
-    "app-CartInfo": CartInfo
-  }
+    "app-CartInfo": CartInfo,
+  },
 };
 </script>
 
@@ -123,7 +125,7 @@ export default {
       hsla(0, 0%, 96%, 0.3) 75%,
       hsla(0, 0%, 96%, 0)
     ),
-    linear-gradient(270deg, #009eef, #009eef);
+    linear-gradient(270deg, #38c27e, #38c27e);
   display: flex;
   flex-direction: column;
   flex-grow: 1;

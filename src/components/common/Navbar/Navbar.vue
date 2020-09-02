@@ -11,20 +11,20 @@ export default {
   name: "Navbar",
   data() {
     return {
-      currentIndex: 0
+      currentIndex: 0,
     };
   },
   props: {
     title: {
-      type: Array
-    }
+      type: Array,
+    },
   },
   methods: {
     itemClick(index) {
       this.currentIndex = index;
       this.$emit("tabclick", index);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -44,6 +44,6 @@ span {
   padding: 3px 10px;
 }
 .active {
-  border-bottom: 2px solid #009eef;
+  border-bottom: 2px solid #38c27e;
 }
 </style>

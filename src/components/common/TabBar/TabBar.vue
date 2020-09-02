@@ -6,7 +6,8 @@
       :key="index"
       :to="item.path"
       active-class="isActive"
-      ><div class="tab-icon">
+    >
+      <div class="tab-icon">
         <i :class="'fa fa-' + item.icon"></i>
       </div>
       <div class="tab-item-label">{{ item.title }}</div>
@@ -19,9 +20,9 @@ export default {
   props: {
     data: {
       type: Array,
-      default: []
-    }
-  }
+      default: [],
+    },
+  },
 };
 </script>
 <style scoped>
@@ -67,6 +68,6 @@ a {
   color: #999;
 }
 .isActive {
-  color: #009eef;
+  color: #38c27e;
 }
 </style>

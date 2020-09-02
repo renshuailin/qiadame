@@ -45,13 +45,13 @@ import Rating from "../../common/Rating/Rating";
 export default {
   name: "Shop",
   components: {
-    "app-Rating": Rating
+    "app-Rating": Rating,
   },
   props: {
     merchant: {
-      type: Object
-    }
-  }
+      type: Object,
+    },
+  },
 };
 </script>
 
@@ -131,7 +131,7 @@ export default {
 }
 .delivery .icon {
   color: #fff;
-  background-color: #2395ff;
+  background-color: #38c27e;
   padding: 2px;
   box-sizing: border-box;
 }

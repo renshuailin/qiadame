@@ -55,22 +55,22 @@ export default {
       totalCount: 0,
       totalPirce: 0,
       selectFood: [],
-      isshowMask: false
+      isshowMask: false,
     };
   },
   props: {
-    shopInfo: { type: Object }
+    shopInfo: { type: Object },
   },
   methods: {
     // 清空
     clear() {
-      this.shopInfo.recommend.forEach(recommend => {
-        recommend.items.forEach(item => {
+      this.shopInfo.recommend.forEach((recommend) => {
+        recommend.items.forEach((item) => {
           item.count = 0;
         });
       });
-      this.shopInfo.menu.forEach(menu => {
-        menu.foods.forEach(item => {
+      this.shopInfo.menu.forEach((menu) => {
+        menu.foods.forEach((item) => {
           item.count = 0;
         });
       });
@@ -79,10 +79,10 @@ export default {
     settlement() {
       this.$store.dispatch("setOrederInfo", {
         shopInfo: this.shopInfo.rst,
-        selectFood: this.selectFood
+        selectFood: this.selectFood,
       });
       this.$router.push("/settlement");
-    }
+    },
   },
 
   computed: {
@@ -93,8 +93,8 @@ export default {
       this.totalPirce = 0;
       // this.select = [];
       this.selectFood = [];
-      this.shopInfo.recommend.forEach(recommend => {
-        recommend.items.forEach(item => {
+      this.shopInfo.recommend.forEach((recommend) => {
+        recommend.items.forEach((item) => {
           if (item.count) {
             empty = false;
             this.totalPirce += item.activity.fixed_price * item.count;
@@ -108,8 +108,8 @@ export default {
           }
         });
       });
-      this.shopInfo.menu.forEach(menu => {
-        menu.foods.forEach(item => {
+      this.shopInfo.menu.forEach((menu) => {
+        menu.foods.forEach((item) => {
           if (item.count) {
             this.totalCount += item.count;
             this.totalPirce += item.activity.fixed_price * item.count;
@@ -119,8 +119,8 @@ export default {
         });
       });
       return empty;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -145,7 +145,7 @@ export default {
   height: 13vw;
   box-sizing: border-box;
   border-radius: 100%;
-  background-color: #3190e8;
+  background-color: #38c27e;
   border: 1vw solid #444;
   box-shadow: 0 -1vw 0.5vw 0 rgba(0, 0, 0, 0.1);
 }
